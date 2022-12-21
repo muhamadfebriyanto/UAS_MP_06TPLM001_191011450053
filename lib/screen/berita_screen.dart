@@ -36,14 +36,14 @@ class _BeritaScreenState extends State<BeritaScreen> {
           }
           return ListView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
-            itemCount: beritaCubit.beritaModel,
+            itemCount: beritaCubit.beritaModel.data!.posts?.length ?? 0,
             itemBuilder: (context, index) {
               return Card(
                 child: ListTile(
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 18, horizontal: 18),
                   title: Text(
-                    beritaCubit.beritaModel.results![index].title!,
+                    beritaCubit.beritaModel.data!.posts![index].title!,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -53,9 +53,10 @@ class _BeritaScreenState extends State<BeritaScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(beritaCubit.beritaModel.results![index].pubDate!),
                         Text(beritaCubit
-                            .beritaModel.results![index].description!),
+                            .beritaModel.data!.posts![index].pubDate!),
+                        Text(beritaCubit
+                            .beritaModel.data!.posts![index].description!),
                       ],
                     ),
                   ),
